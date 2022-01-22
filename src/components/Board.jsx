@@ -7,12 +7,20 @@ const candyColors = ["blue", "green", "orange", "purple", "red", "yellow"];
 const Board = () => {
   const [boardColors, setBoardColors] = useState([]);
 
+  let randomColor; 
+
+  const randomizeColors = () => {
+    let randomIndex = Math.floor(Math.random() * candyColors.length);
+    randomColor = candyColors[randomIndex];
+    return randomColor;
+  }
+
   const createBoard = () => {
     const randomColors = [];
     for (let i = 0; i < width * width; i++) {
-      let randomIndex = Math.floor(Math.random() * candyColors.length);
-      let randomColor = candyColors[randomIndex];
+      randomizeColors(); 
       randomColors.push(randomColor);
+
     }
     setBoardColors(randomColors);
   };
@@ -75,6 +83,13 @@ const Board = () => {
 
   const moveBelow = () => {
     for (let i = 0; i < 64; i++) {
+      const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+      const isFirstRow = firstRow.includes(i)
+
+      if(isFirstRow && boardColors[i] === '') {
+        randomizeColors()
+        boardColors[i] = randomColor;
+      }
       if (boardColors[i + width] === "") {
         boardColors[i + width] = boardColors[i];
         boardColors[i] = "";
@@ -94,7 +109,7 @@ const Board = () => {
       checkRowOfThree();
       moveBelow();
       setBoardColors([...boardColors]);
-    }, 2000);
+    }, 1000);
     return () => clearInterval(timer);
   }, [
     checkColumnOfFour,
