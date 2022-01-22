@@ -73,6 +73,14 @@ const Board = () => {
     }
   };
 
+  const moveBelow = () => {
+    for (let i = 0; i < 64; i++) {
+      if (boardColors[i + width] === "") {
+        boardColors[i + width] = boardColors[i];
+        boardColors[i] = "";
+      }
+    }
+  };
 
   useEffect(() => {
     createBoard();
@@ -84,14 +92,16 @@ const Board = () => {
       checkRowOfFour();
       checkColumnOfThree();
       checkRowOfThree();
+      moveBelow();
       setBoardColors([...boardColors]);
-    }, 100);
+    }, 2000);
     return () => clearInterval(timer);
   }, [
     checkColumnOfFour,
     checkRowOfFour,
     checkColumnOfThree,
     checkRowOfThree,
+    moveBelow,
     boardColors,
   ]);
 
