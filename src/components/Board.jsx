@@ -73,6 +73,7 @@ const Board = () => {
     }
   };
 
+
   useEffect(() => {
     createBoard();
   }, []);
