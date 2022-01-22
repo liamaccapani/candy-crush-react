@@ -17,9 +17,44 @@ const Board = () => {
     setBoardColors(randomColors);
   };
 
+  const checkColumnOfFour = () => {
+    for (let i = 0; i < 39; i++) {
+      let columnOfFour = [i, i + width, i + width * 2, i + width * 3];
+      let colorToCheck = boardColors[i];
+      if (
+        columnOfFour.every((square) => boardColors[square] === colorToCheck)
+      ) {
+        columnOfFour.forEach((square) => (boardColors[square] = ""));
+      }
+    }
+  };
+
+  const checkColumnOfThree = () => {
+    for (let i = 0; i < 47; i++) {
+      let columnOfThree = [i, i + width, i + width * 2];
+      let colorToCheck = boardColors[i];
+      if (
+        columnOfThree.every((square) => boardColors[square] === colorToCheck)
+      ) {
+        columnOfThree.forEach((square) => (boardColors[square] = ""));
+      }
+    }
+  };
+
   useEffect(() => {
     createBoard();
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      checkColumnOfFour();
+      checkColumnOfThree();
+      setBoardColors([...boardColors]);
+    }, 100);
+    return () => clearInterval(timer);
+  }, [checkColumnOfFour, checkColumnOfThree, boardColors]);
+
+  console.log(boardColors);
 
   return (
     <div className="app">
@@ -28,7 +63,7 @@ const Board = () => {
           <img
             key={index}
             style={{ backgroundColor: candyColor }}
-            alt={candyColor}
+            // alt={candyColor}
           />
         ))}
       </div>
