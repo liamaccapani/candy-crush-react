@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import "../index.css";
+import Blank from "../assets/candies/blank.png";
+import BlueCandy from "../assets/candies/blue-candy.png";
+import GreenCandy from "../assets/candies/green-candy.png";
+import OrangeCandy from "../assets/candies/orange-candy.png";
+import PurpleCandy from "../assets/candies/purple-candy.png";
+import RedCandy from "../assets/candies/red-candy.png";
+import YellowCandy from "../assets/candies/yellow-candy.png";
+
+
+
 
 const width = 8;
 const candyColors = ["blue", "green", "orange", "purple", "red", "yellow"];
@@ -130,6 +140,11 @@ const Board = () => {
             key={index}
             style={{ backgroundColor: candyColor }}
             // alt={candyColor}
+            id={index}
+            draggable={true}
+            onDragOver={(e) => e.preventDefault()}
+            onDragEnter={(e) => e.preventDefault()}
+            onDragLeave={(e) => e.preventDefault()}
           />
         ))}
       </div>
