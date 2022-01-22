@@ -5,16 +5,16 @@ const width = 8;
 const candyColors = ["blue", "green", "orange", "purple", "red", "yellow"];
 
 const Board = () => {
-  const [board, setBoard] = useState([]);
+  const [boardColors, setBoardColors] = useState([]);
 
   const createBoard = () => {
-    const randomCandies = [];
+    const randomColors = [];
     for (let i = 0; i < width * width; i++) {
-      const randomColor =
-        candyColors[Math.floor(Math.random() * candyColors.length)];
-      randomCandies.push(randomColor);
+      let randomIndex = Math.floor(Math.random() * candyColors.length);
+      let randomColor = candyColors[randomIndex];
+      randomColors.push(randomColor);
     }
-    setBoard(randomCandies);
+    setBoardColors(randomColors);
   };
 
   useEffect(() => {
@@ -24,8 +24,11 @@ const Board = () => {
   return (
     <div className="app">
       <div className="game">
-        {board.map((candyColor, index) => (
-          <img key={index} style={{ backgroundColor: candyColor }} alt={candyColor}
+        {boardColors.map((candyColor, index) => (
+          <img
+            key={index}
+            style={{ backgroundColor: candyColor }}
+            alt={candyColor}
           />
         ))}
       </div>
