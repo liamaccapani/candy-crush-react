@@ -12,7 +12,7 @@ import YellowCandy from "../assets/candies/yellow-candy.png";
 
 
 const width = 8;
-const candyColors = ["blue", "green", "orange", "purple", "red", "yellow"];
+const candyColors = [BlueCandy, GreenCandy, OrangeCandy, PurpleCandy, RedCandy, YellowCandy];
 
 const Board = () => {
   const [boardColors, setBoardColors] = useState([]);
@@ -42,7 +42,7 @@ const Board = () => {
       if (
         columnOfFour.every((square) => boardColors[square] === colorToCheck)
       ) {
-        columnOfFour.forEach((square) => (boardColors[square] = ""));
+        columnOfFour.forEach((square) => (boardColors[square] = Blank));
       }
     }
   };
@@ -59,7 +59,7 @@ const Board = () => {
       ];
       if (discard.includes(i)) continue;
       if (rowOfFour.every((square) => boardColors[square] === colorToCheck)) {
-        rowOfFour.forEach((square) => (boardColors[square] = ""));
+        rowOfFour.forEach((square) => (boardColors[square] = Blank));
       }
     }
   };
@@ -71,7 +71,7 @@ const Board = () => {
       if (
         columnOfThree.every((square) => boardColors[square] === colorToCheck)
       ) {
-        columnOfThree.forEach((square) => (boardColors[square] = ""));
+        columnOfThree.forEach((square) => (boardColors[square] = Blank));
       }
     }
   };
@@ -86,7 +86,7 @@ const Board = () => {
       ];
       if (discard.includes(i)) continue;
       if (rowOfThree.every((square) => boardColors[square] === colorToCheck)) {
-        rowOfThree.forEach((square) => (boardColors[square] = ""));
+        rowOfThree.forEach((square) => (boardColors[square] = Blank));
       }
     }
   };
@@ -96,13 +96,13 @@ const Board = () => {
       const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
       const isFirstRow = firstRow.includes(i)
 
-      if(isFirstRow && boardColors[i] === '') {
+      if(isFirstRow && boardColors[i] === Blank) {
         randomizeColors()
         boardColors[i] = randomColor;
       }
-      if (boardColors[i + width] === "") {
+      if (boardColors[i + width] === Blank) {
         boardColors[i + width] = boardColors[i];
-        boardColors[i] = "";
+        boardColors[i] = Blank;
       }
     }
   };
@@ -119,7 +119,7 @@ const Board = () => {
       checkRowOfThree();
       moveBelow();
       setBoardColors([...boardColors]);
-    }, 1000);
+    }, 100);
     return () => clearInterval(timer);
   }, [
     checkColumnOfFour,
@@ -138,13 +138,9 @@ const Board = () => {
         {boardColors.map((candyColor, index) => (
           <img
             key={index}
-            style={{ backgroundColor: candyColor }}
-            // alt={candyColor}
-            id={index}
-            draggable={true}
-            onDragOver={(e) => e.preventDefault()}
-            onDragEnter={(e) => e.preventDefault()}
-            onDragLeave={(e) => e.preventDefault()}
+            src={candyColor}
+            // style={{ backgroundColor: candyColor }}
+            alt={candyColor}
           />
         ))}
       </div>
