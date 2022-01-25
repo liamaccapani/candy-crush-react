@@ -178,7 +178,7 @@ const Board = () => {
       checkRowOfThree();
       moveBelow();
       setBoardColors([...boardColors]);
-    }, 100);
+    }, 50);
     return () => clearInterval(timer);
   }, [
     checkColumnOfFour,
