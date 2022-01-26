@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Score from "./Score";
 import "../index.css";
 import Blank from "../assets/candies/blank.png";
 import BlueCandy from "../assets/candies/blue-candy.png";
@@ -22,8 +23,10 @@ const Board = () => {
   const [boardColors, setBoardColors] = useState([]);
   const [squareToDrag, setSquareToDrag] = useState(null);
   const [squareToReplace, setSquareToReplace] = useState(null);
+  const [score, setScore] = useState(0);
 
   let randomColor;
+
 
   const randomizeColors = () => {
     let randomIndex = Math.floor(Math.random() * candyColors.length);
@@ -44,9 +47,13 @@ const Board = () => {
     for (let i = 0; i <= 39; i++) {
       let columnOfFour = [i, i + width, i + width * 2, i + width * 3];
       let colorToCheck = boardColors[i];
+      const isBlank = boardColors[i] === Blank;
+      // if match && not blank
       if (
-        columnOfFour.every((square) => boardColors[square] === colorToCheck)
+        columnOfFour.every((square) => boardColors[square] === colorToCheck) && !isBlank
       ) {
+        // get score and add on top of it with a cb fx
+        setScore((previousScore) => previousScore + 4)
         columnOfFour.forEach((square) => (boardColors[square] = Blank));
         return true;
       }
@@ -63,8 +70,10 @@ const Board = () => {
         // 5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53,
         // 54, 55, 62, 63, 64,
       ];
+      const isBlank = boardColors[i] === Blank;
       if (discard.includes(i)) continue;
-      if (rowOfFour.every((square) => boardColors[square] === colorToCheck)) {
+      if (rowOfFour.every((square) => boardColors[square] === colorToCheck) && !isBlank) {
+        setScore((previousScore) => previousScore + 4)
         rowOfFour.forEach((square) => (boardColors[square] = Blank));
         return true;
       }
@@ -75,9 +84,11 @@ const Board = () => {
     for (let i = 0; i <= 47; i++) {
       let columnOfThree = [i, i + width, i + width * 2];
       let colorToCheck = boardColors[i];
+      const isBlank = boardColors[i] === Blank;
       if (
-        columnOfThree.every((square) => boardColors[square] === colorToCheck)
+        columnOfThree.every((square) => boardColors[square] === colorToCheck) && !isBlank
       ) {
+        setScore((previousScore) => previousScore + 3)
         columnOfThree.forEach((square) => (boardColors[square] = Blank));
         return true;
       }
@@ -92,8 +103,10 @@ const Board = () => {
         // 6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64,
         6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63,
       ];
+      const isBlank = boardColors[i] === Blank;
       if (discard.includes(i)) continue;
-      if (rowOfThree.every((square) => boardColors[square] === colorToCheck)) {
+      if (rowOfThree.every((square) => boardColors[square] === colorToCheck) && !isBlank)  {
+        setScore((previousScore) => previousScore + 3)
         rowOfThree.forEach((square) => (boardColors[square] = Blank));
         return true;
       }
@@ -135,8 +148,8 @@ const Board = () => {
     const idDraggedSquare = parseInt(squareToDrag.getAttribute("id"));
     const idSquareToReplace = parseInt(squareToReplace.getAttribute("id"));
 
-    boardColors[idDraggedSquare] = squareToReplace.getAttribute('src');
-    boardColors[idSquareToReplace] = squareToDrag.getAttribute('src');
+    boardColors[idDraggedSquare] = squareToReplace.getAttribute("src");
+    boardColors[idSquareToReplace] = squareToDrag.getAttribute("src");
 
     //a bunch of numbers of valid indexes / places
     const validMoves = [
@@ -160,8 +173,8 @@ const Board = () => {
       setSquareToDrag(null); //we start again
       setSquareToReplace(null);
     } else {
-      boardColors[idSquareToReplace] = squareToReplace.getAttribute('src');
-      boardColors[idDraggedSquare] = squareToDrag.getAttribute('src');
+      boardColors[idSquareToReplace] = squareToReplace.getAttribute("src");
+      boardColors[idDraggedSquare] = squareToDrag.getAttribute("src");
       setBoardColors([...boardColors]);
     }
   };
@@ -199,7 +212,7 @@ const Board = () => {
             key={index}
             src={candyColor}
             // style={{ backgroundColor: candyColor }}
-            // alt={candyColor}
+            alt={candyColor}
             id={index}
             draggable={true}
             onDragStart={dragStart}
@@ -211,6 +224,7 @@ const Board = () => {
           />
         ))}
       </div>
+      <Score score={score} />
     </div>
   );
 };
