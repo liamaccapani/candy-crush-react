@@ -58,11 +58,11 @@ body {
 
 .score .semiCircle {
   position: absolute;
-  top: 14%;
+  top: 55px;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 25%;
-  width: 60%;
+  height: 100px;
+  width: 120px;
   border-radius: 0 0 150px 150px;
   background-color: #fed3eef6;
   box-shadow: 0 4px 8px #df89b5f5;
