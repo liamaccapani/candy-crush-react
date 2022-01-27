@@ -205,8 +205,8 @@ const Board = () => {
   //console.log(boardColors);
 
   return (
-    <div className="app">
-      <div className="game">
+    <div className="game">
+      <div className="candyBoard">
         {boardColors.map((candyColor, index) => (
           <img
             key={index}
@@ -224,7 +224,7 @@ const Board = () => {
           />
         ))}
       </div>
-      <Score score={score} />
+      <div><Score score={score} /></div>
     </div>
   );
 };

@@ -1,32 +1,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;600&family=Oleo+Script:wght@700&display=swap");
 
 body {
-  background-color: #e995cace;
-}
-.score {
-  font-family: "Inter", sans-serif;
-  font-family: "Oleo Script", cursive;
-  font-weight: 700;
-}
-
-.app {
-  display: flex;
-  padding: 30px;
+  /* background-color: #e995cace; */
+  margin: 0;
+  background: url('https://www.wallpapertip.com/wmimgs/48-487341_candy-crush-saga-wiki-candy-crush-saga-background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
 }
 
 .game {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.candyBoard {
   width: 560px;
   height: 560px;
   display: flex;
   flex-wrap: wrap;
-  /* box-sizing: border-box; */
+  align-self: center;
+  padding: 1rem;
 }
 
-.game img {
+.candyBoard img {
   width: 70px;
   height: 70px;
   background-color: #5b7381ce;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.342);
   border-radius: .4rem;
+}
+
+.score {
+  width: 200px;
+  height: 70vh;
+  background-color: #FCA3D3;
+  /* box-sizing: border-box; */
+  /* border: 15px solid; */
+  /* border-radius: 10% 30%; */
+}
+
+.score h1 {
+  margin: 0;
+  padding-top: 2rem;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-family: "Oleo Script", cursive;
+  font-weight: 700;
+  color: #9E1E4F;
 }

@@ -1,11 +1,11 @@
 import "../index.css";
 
-const Score = ({score}) => {
- return (
-     <h1 className="score">
-         {score}
-     </h1>
- )
-}
+const Score = ({ score }) => {
+  return (
+    <div className="score">
+      <h1>{score}</h1>
+    </div>
+  );
+};
 
-export default Score
+export default Score;
