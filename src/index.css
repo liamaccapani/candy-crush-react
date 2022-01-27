@@ -3,12 +3,12 @@
 body {
   /* background-color: #e995cace; */
   margin: 0;
-  background: url('https://www.wallpapertip.com/wmimgs/48-487341_candy-crush-saga-wiki-candy-crush-saga-background.jpg') no-repeat center center fixed;
+  background: url("https://www.wallpapertip.com/wmimgs/48-487341_candy-crush-saga-wiki-candy-crush-saga-background.jpg")
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
 }
 
 .game {
@@ -32,16 +32,17 @@ body {
   background-color: #5b7381ce;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.342);
-  border-radius: .4rem;
+  border-radius: 0.4rem;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.664));
 }
 
 .score {
   width: 200px;
   height: 70vh;
-  background-color: #FCA3D3;
-  /* box-sizing: border-box; */
-  /* border: 15px solid; */
-  /* border-radius: 10% 30%; */
+  background-color: #fca3d2ee;
+  border-radius: 0 0 30px 30px;
+  position: relative;
+  z-index: -3;
 }
 
 .score h1 {
@@ -51,5 +52,19 @@ body {
   font-family: "Inter", sans-serif;
   font-family: "Oleo Script", cursive;
   font-weight: 700;
-  color: #9E1E4F;
+  color: #9e1e4f;
+  z-index: 1;
+}
+
+.score .semiCircle {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25%;
+  width: 60%;
+  border-radius: 0 0 150px 150px;
+  background-color: #fed3eef6;
+  box-shadow: 0 4px 8px #df89b5f5;
+  z-index: -1;
 }
