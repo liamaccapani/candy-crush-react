@@ -212,7 +212,7 @@ const Board = () => {
             key={index}
             src={candyColor}
             // style={{ backgroundColor: candyColor }}
-            alt={candyColor}
+            // alt={candyColor}
             id={index}
             draggable={true}
             onDragStart={dragStart}

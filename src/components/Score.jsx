@@ -1,8 +1,10 @@
+import "../index.css";
+
 const Score = ({score}) => {
  return (
-     <div>
+     <h1 className="score">
          {score}
-     </div>
+     </h1>
  )
 }
 
